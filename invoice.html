@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffe5d9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .invoice-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ff5733;
+        }
+
+        .invoice-header img {
+            height: 100px;
+        }
+
+        .invoice-details, .summary {
+            margin: 20px 0;
+        }
+
+        .invoice-details p, .summary p {
+            margin: 5px 0;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .items-table th, .items-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .items-table th {
+            background-color: #ff5733;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .invoice-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="invoice-header">
+            <img src="../Assetsss/amoy.png" alt="Company Logo">
+        <nav>
+           <a href="homepage.html">Home</a>
+           <a href="products.html">Products</a>
+           <a href="invoice.html">Invoice</a>
+           <a href="about us.html">About Us</a>
+        </nav>
+            <h1>Invoice</h1>
+        </div>
+
+        <div class="invoice-details">
+            <p><strong>Date:</strong> <span id="invoice-date"></span></p>
+            <p><strong>Customer Name:</strong> <span id="customer-name"></span></p>
+            <p><strong>Invoice Number:</strong> <span id="invoice-number"></span></p>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-items"></tbody>
+        </table>
+
+        <div class="summary">
+            <p id="invoice-subtotal">Subtotal: $0.00</p>
+            <p id="invoice-tax">Tax (5%): $0.00</p>
+            <p id="invoice-total">Total Amount: $0.00</p>
+        </div>
+        
+        <div class="buttons">
+            <button onclick="window.location.href='products.html'">Cancel</button>
+            <button onclick="window.location.href='login.html'">Exit</button>
+        </div>
+    </div>
+
+    <script>
+        function getInvoiceData() {
+            const params = new URLSearchParams(window.location.search);
+            const invoiceData = JSON.parse(params.get('invoice'));
+
+            document.getElementById('invoice-date').textContent = new Date().toLocaleDateString();
+            document.getElementById('invoice-number').textContent = Math.floor(Math.random() * 1000000);
+
+            const items = invoiceData.items.split('\n');
+            const invoiceItemsDiv = document.getElementById('invoice-items');
+            let subtotal = 0;
+
+            items.forEach(item => {
+                const [name, price] = item.split(' - $');
+                const priceValue = parseFloat(price);
+                subtotal += priceValue;
+                const row = `<tr><td>${name}</td><td>$${price}</td></tr>`;
+                invoiceItemsDiv.innerHTML += row;
+            });
+
+            const tax = subtotal * 0.05; // 5% tax
+            const total = subtotal + tax;
+
+            document.getElementById('invoice-subtotal').textContent = `Subtotal: $${subtotal.toFixed(2)}`;
+            document.getElementById('invoice-tax').textContent = `Tax (5%): $${tax.toFixed(2)}`;
+            document.getElementById('invoice-total').textContent = `Total Amount: $${total.toFixed(2)}`;
+        }
+
+        getInvoiceData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("../Assetsss/wigs.png") ;
+            background-size: cover;
+            color: white;
+        }
+
+        .login {
+            border: 1px solid black;
+            width: 500px;
+            min-height: 400px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            color: white;
+            margin: 50px auto;
+            border-radius: 10px;
+        }
+
+        .login h2 {
+            margin: 0;
+            text-align: center;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .login h2:last-of-type {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 14px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            font-size: 1.1em;
+        }
+
+        .form-group button:hover {
+            background-color: #218838;
+        }
+
+        a {
+            color: #28a745;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="login-form">
+            <div class="login">
+                <h2>Amoy's Wig Boutique</h2>
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="username">Username or Email Address*</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password-login">Password*</label>
+                    <input type="password" id="password-login" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+                <a href="#">Lost your password?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Sample users with carts and invoices
+        const sampleUsers = {
+            "user1": {
+                username: "user1",
+                password: "password123",
+                cart: [],
+                invoice: ""
+            },
+            "user2": {
+                username: "user2",
+                password: "password456",
+                cart: [],
+                invoice: ""
+            },
+            "user3": {
+                username: "user3",
+                password: "password789",
+                cart: [],
+                invoice: ""
+            }
+        };
+
+        // Store sample users in local storage if not already stored
+        if (!localStorage.getItem("users")) {
+            localStorage.setItem("users", JSON.stringify(sampleUsers));
+        }
+
+        let loginAttempts = 0;
+
+        const loginForm = document.querySelector('#login-form');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get user input
+            const usernameInput = document.querySelector('#username').value;
+            const passwordInput = document.querySelector('#password-login').value;
+
+            // Retrieve users from local storage
+            const users = JSON.parse(localStorage.getItem("users"));
+
+            // Validate user credentials
+            if (users[usernameInput] && users[usernameInput].password === passwordInput) {
+                alert(`Welcome, ${usernameInput}!`); // Corrected alert syntax
+                
+                // Redirect to products page with the username in the query params
+                window.location.href = `products.html?username=${usernameInput}`; // Corrected redirection URL
+            } else {
+                loginAttempts++;
+                alert('Invalid username or password. Please try again.');
+
+                if (loginAttempts >= 3) {
+                    alert('Too many failed attempts. Redirecting to error page.');
+                    window.location.href = 'error.html';
+                }
+            }
+        });
+
+        // Invoice creation based on the user's cart (sample implementation)
+        function generateInvoice(username) {
+            const users = JSON.parse(localStorage.getItem("users"));
+            const user = users[username];
+            
+            if (user) {
+                // Generate invoice text with product details and username
+                user.invoice = `Invoice for ${username}:\nProducts:\n`;
+                user.cart.forEach((product, index) => {
+                    user.invoice += `${index + 1}. ${product.name} - $${product.price}\n`;
+                });
+
+                localStorage.setItem("users", JSON.stringify(users));
+                alert(user.invoice); // Display the generated invoice
+            }
+        }
+
+    </script>
+</body>
+</html>
+

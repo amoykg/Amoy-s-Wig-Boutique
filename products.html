@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Styles for Products Page */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:#ffe5d9;
+            color: #333;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+    .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #FFFFFF; /* White background */
+}
+
+
+
+
+.header img {
+    height: 100px; 
+    width: auto;   
+}
+
+
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    border: 2px dashed #ff5733; 
+    border-radius: 10px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+
+
+
+
+.product img {
+    width: 100%; /* Full width */
+    height: 250px; /* Fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    border-radius: 10px;
+}
+
+
+        .product h2 {
+            font-size: 1.5em;
+            margin: 15px 0 10px;
+        }
+
+        .product p {
+            margin: 10px 0;
+        }
+
+        .product span.price {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .product button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #218838;
+        }
+
+        .cart {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .cart h3 {
+            margin-top: 0;
+        }
+
+        .cart p {
+            margin: 5px 0;
+        }
+
+        .cart button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .product h2 {
+                font-size: 1.2em;
+            }
+
+            .product button {
+                font-size: 0.9em;
+            }
+      
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <img src="../Assetsss/amoy.png" alt="Company Logo"> 
+        <nav>
+           <a href="homepage.html">Home</a>
+           <a href="products.html">Products</a>
+           <a href="invoice.html">Invoice</a>
+           <a href="about us.html">About Us</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Products</h1>
+        <div class="products">
+            <!-- Product Items - Sample -->
+            <div class="product" data-id="1">
+                <img src="../Assetsss/product1.png" alt="Product 1">
+                <h2>Brazillian Body Wave</h2>
+                <p>This wig offers soft waves and a natural hairline. Can be dyed and heat-styled.</p>
+                <span class="price">$24000.00</span>
+                <button onclick="addToCart(1, 'Product 1', 24000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="2">
+                <img src="../Assetsss/product2.png" alt="Product 2">
+                <h2>Synthetic Bob Cut</h2>
+                <p>A stylish, shoulder-length bob with blunt bangs. Made of high-quality heat-resistant synthetic fibers.</p>
+                <span class="price">$17000.00</span>
+                <button onclick="addToCart(2, 'Product 2', 17000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="3">
+                <img src="../Assetsss/product3.png" alt="Product 3">
+                <h2>360 Full Lace</h2>
+                <p>Features bouncy, curly hair with 360-degree lace, allowing for high ponytails and versatile styling.</p>
+                <span class="price">$20000.00</span>
+                <button onclick="addToCart(2, 'Product 3', 20000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="4">
+                <img src="../Assetsss/product4.png" alt="Product 4">
+                <h2>Deep Wave U-Part</h2>
+                <p>A U-part wig with a natural deep wave texture. Blends perfectly with natural hair for a fuller look.</p>
+                <span class="price">$20000.00</span>
+                <button onclick="addToCart(2, 'Product 4', 20000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="5">
+                <img src="../Assetsss/product5.png" alt="Product 5">
+                <h2>Silky Straight Headband</h2>
+                <p>A beginner-friendly wig with a silky straight texture and an attached headband.</p>
+                <span class="price">$18000.00</span>
+                <button onclick="addToCart(2, 'Product 5', 18000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="6">
+                <img src="../Assetsss/product6.png" alt="Product 6">
+                <h2>Afro Kinky Curly</h2>
+                <p>A voluminous synthetic wig with an Afro kinky curl pattern. Perfect for achieving a natural and bold look.</p>
+                <span class="price">$23000.00</span>
+                <button onclick="addToCart(2, 'Product 6', 23000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="7">
+                <img src="../Assetsss/product7.png" alt="Product 7">
+                <h2>Loose Deep Wave</h2>
+                <p>Offers a loose deep wave texture with a lace front for a realistic hairline. Made from 100% human hair.</p>
+                <span class="price">$25000.00</span>
+                <button onclick="addToCart(2, 'Product 7', 25000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="8">
+                <img src="../Assetsss/product8.png" alt="Product 8">
+                <h2>Black Pixie Wig</h2>
+                <p>A chic, short pixie cut made from heat-resistant synthetic fiber. Available in blonde and other vibrant shades.</p>
+                <span class="price">$12000.00</span>
+                <button onclick="addToCart(2, 'Product 8', 12000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="9">
+                <img src="../Assetsss/product9.png" alt="Product 9">
+                <h2>Ombre Brown Blonde</h2>
+                <p>Features a beautiful ombre brown blonde color effect on curly human hair.</p>
+                <span class="price">$27500.00</span>
+                <button onclick="addToCart(2, 'Product 9', 27500.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="10">
+                <img src="../Assetsss/product10.png" alt="Product 10">
+                <h2>Water Wave HD</h2>
+                <p>Comes with a water wave pattern and HD lace closure, offering a transparent lace for an undetectable hairline.</p>
+                <span class="price">$29000.00</span>
+                <button onclick="addToCart(2, 'Product 10', 29000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="11">
+                <img src="../Assetsss/product11.png" alt="Product 11">
+                <h2>Glueless Deep Part</h2>
+                <p>A glueless lace wig with a deep middle part, featuring 100% human hair with a silky straight texture.</p>
+                <span class="price">$21000.00</span>
+                <button onclick="addToCart(2, 'Product 11', 21000.00)">Add to Cart</button>
+            </div>
+
+            <div class="product" data-id="12">
+                <img src="../Assetsss/product12.png" alt="Product 12">
+                <h2>Wavy Bob Lace</h2>
+                <p> A chic, short wavy bob with a lace front for a natural look.Perfect for low-maintenance yet stylish wear.</p>
+                <span class="price">$18500.00</span>
+                <button onclick="addToCart(2, 'Product 12', 18500.00)">Add to Cart</button>
+            </div>
+
+
+
+        </div>
+
+        <div class="cart">
+            <h3>Shopping Cart</h3>
+            <div id="cart-items"></div>
+            <p id="subtotal">Subtotal: $0.00</p>
+            <p id="tax">Tax (5%): $0.00</p>
+            <p id="total">Total: $0.00</p>
+            <button onclick="checkout()">CheckOut</button>
+            <button onclick="cancelOrder()">Cancel</button>
+            <button onclick="exitPage()">Exit</button>
+        </div>
+    </div>
+
+    <script>
+  // Global array to keep track of the cart
+        let cart = [];
+
+        // Function to add products to the cart
+        function addToCart(id, name, price) {
+            const product = { id, name, price };
+            cart.push(product);
+            updateCart();
+        }
+
+        // Function to update the cart display
+        function updateCart() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            cartItemsDiv.innerHTML = ''; // Clear previous items
+
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                const itemDiv = document.createElement('div');
+               itemDiv.textContent = `${item.name} - $${item.price.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+
+            // Calculate tax and total
+            const tax = subtotal * 0.05; // 5% tax
+            const total = subtotal + tax;
+
+            // Update subtotal, tax, and total display
+            document.getElementById('subtotal').textContent = `Subtotal: $${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+            document.getElementById('tax').textContent = `Tax (5%): $${tax.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+            document.getElementById('total').textContent = `Total: $${total.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+        }
+
+
+        // Function to checkout and generate invoice
+function checkout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+
+    // Generate invoice data
+    const invoiceText = cart.map(item => `${item.name} - $${item.price.toFixed(2)}`).join('\n');
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const tax = subtotal * 0.05;
+    const total = subtotal + tax;
+
+    // Prepare invoice content for the separate page
+    const invoiceData = {
+        items: invoiceText,
+        subtotal: subtotal.toFixed(2),
+        tax: tax.toFixed(2),
+        total: total.toFixed(2)
+    };
+
+    // Redirect to invoice page with invoice data as a query string
+    window.location.href = `invoice.html?invoice=${JSON.stringify(invoiceData)}`;
+
+    // Reset cart after checkout (optional)
+    // cart = [];
+    // updateCart();
+}
+
+   // Cancel button to reload the products page
+    function cancelOrder() {
+        location.reload(); // Reload the current page
+    }
+
+    // Exit button to redirect to the login page
+    function exitPage() {
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+    </script>
+
+    <footer>
+        <p>&copy; 2024 Amoy's Wig Boutique </p>
+    </footer>
+</body>
+</html>
+
+
